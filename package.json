@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/corevo/ochre-controller/issues"
   },
-  "homepage": "https://github.com/corevo/ochre-controller#readme"
+  "homepage": "https://github.com/corevo/ochre-controller#readme",
+  "dependencies": {
+    "kue": "^0.10.5"
+  }
 }

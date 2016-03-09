@@ -8,3 +8,5 @@ const redis = {
 const queue = kue.createQueue({
     redis
 });
+
+queue.create().removeOnComplete(true).save();

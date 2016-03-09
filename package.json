@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/corevo/ochre-controller#readme",
   "dependencies": {
+    "find": "^0.2.4",
     "kue": "^0.10.5"
   }
 }

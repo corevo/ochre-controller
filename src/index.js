@@ -17,12 +17,13 @@ export default class Controller {
         this.queue = kue.createQueue({
             redis
         });
+        this.index = this.index.bind(this);
     }
     index() {
         getFiles(FILES_PATH, files => {
             files.forEach(file => {
                 console.log('Creating job for: ' + file);
-                queue.create('index', {
+                this.queue.create('index', {
                     file
                 }).removeOnComplete(true).save();
             });

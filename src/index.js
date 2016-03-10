@@ -10,7 +10,6 @@ const queue = kue.createQueue({
     redis
 });
 
-//queue.create().removeOnComplete(true).save();
 function getFiles(path, cb) {
     find.file(path, (files) => {
         cb(files.filter(file => (!(/(^|\/)\.[^\/\.]/g).test(file))));
@@ -19,6 +18,9 @@ function getFiles(path, cb) {
 
 getFiles(FILES_PATH, files => {
     files.forEach(file => {
-        console.log(file);
+        console.log('Creating job for: ' + file);
+        queue.create('index', {
+            file
+        }).removeOnComplete(true).save();
     });
 });

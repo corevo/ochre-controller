@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import program from 'commander';
-//import controller from './index';
+import Controller from './index';
 
 process.title = "ochre commander";
 
@@ -27,6 +27,5 @@ if (!path) {
     path = process.env.FILES_PATH || '/data';
 }
 
-console.log(address);
-console.log(port);
-console.log(path);
+let controller = new Controller(address, port);
+controller.index(path);

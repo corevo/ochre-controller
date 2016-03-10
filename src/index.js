@@ -10,9 +10,15 @@ const queue = kue.createQueue({
     redis
 });
 
-find.file(/^((?!\/\.).)*$/, FILES_PATH, (files) => {
+//queue.create().removeOnComplete(true).save();
+function getFiles(path, cb) {
+    find.file(path, (files) => {
+        cb(files.filter(file => (!(/(^|\/)\.[^\/\.]/g).test(file))));
+    });
+}
+
+getFiles(FILES_PATH, files => {
     files.forEach(file => {
         console.log(file);
     });
-    //queue.create().removeOnComplete(true).save();
 });

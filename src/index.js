@@ -8,7 +8,7 @@ function getFiles(path, cb) {
 }
 
 export default class Controller {
-    constructor(host, port, path) {
+    constructor(host, port) {
         const redis = {
             port: process.env.REDIS_PORT || 6379,
             host: process.env.REDIS_HOST || '127.0.0.1'
@@ -18,8 +18,8 @@ export default class Controller {
         });
         this.index = this.index.bind(this);
     }
-    index() {
-        getFiles(FILES_PATH, files => {
+    index(path) {
+        getFiles(path, files => {
             files.forEach(file => {
                 console.log('Creating job for: ' + file);
                 this.queue.create('index', {

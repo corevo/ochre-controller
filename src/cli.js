@@ -28,7 +28,4 @@ if (!path) {
 }
 
 let controller = new Controller(address, port);
-controller.index(path);
-let interval = setInterval(() => {
-    controller.index(path);
-}, 1000*60*60*4);
+controller.watch(path);

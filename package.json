@@ -1,6 +1,6 @@
 {
   "name": "ochre-controller",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "sends tasks to ochre-agent to index",
   "main": "index.js",
   "scripts": {

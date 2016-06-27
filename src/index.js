@@ -10,6 +10,10 @@ function getFiles(path, cb) {
 
 export default class Controller {
     constructor(host, port) {
+        this.index = this.index.bind(this);
+        this.indexFile = this.indexFile.bind(this);
+        this.deleteFile = this.deleteFile.bind(this);
+        this.watch = this.watch.bind(this);
         const redis = {
             port: process.env.REDIS_PORT || 6379,
             host: process.env.REDIS_HOST || '127.0.0.1'
@@ -23,10 +27,6 @@ export default class Controller {
         this.watcher.on('add', this.indexFile);
         this.watcher.on('change', this.indexFile);
         this.watcher.on('unlink', this.deleteFile);
-        this.index = this.index.bind(this);
-        this.indexFile = this.indexFile.bind(this);
-        this.deleteFile = this.deleteFile.bind(this);
-        this.watch = this.watch.bind(this);
     }
     watch(path) {
         this.watcher.add(path);
